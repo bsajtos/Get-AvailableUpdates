@@ -10,6 +10,9 @@ Using the "PatchReport" switch parameter, the available patches will be shown in
 ### Prerequisites
 PowerShell version 3+ is a must.
 
+### Usage
+Get-Help Get-AvailableUpdates -Examples
+
 ### Good to know
 The "manageable" property shows the the result of the connection prerequisities in order (DNS -> PING -> WSMAN -> WMI -> Invoke-Command) and stop processing at the first error. This property represents an easy way to immediately assume what went wrong with a problematic server:
   * DNS - DNS name can not be resolved, probably DMZ server
