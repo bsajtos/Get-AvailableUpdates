@@ -1,5 +1,3 @@
-
-
 function Get-AvailableUpdates
 {
 <#
@@ -17,7 +15,7 @@ function Get-AvailableUpdates
 .PARAMETER RAW
 	Boolean type. If this switch parameter defined, then the whole object will be returned. This parameter is reserved for future use (eg: pipeing) and testing
 	Default value: $false
-.PARAMETER ThrottleLimit
+.PARAMETER ThreadLimit
 	Int type, between 1-64. This parameter specifies how many RunSpaceJobs (threads) can run paralell.
 	Default value: 10.
 .EXAMPLE
@@ -33,7 +31,7 @@ function Get-AvailableUpdates
  -----------
  These commands will search for updates on each of the array element in the input variable, the color coded summary sheet will be shown. 
 .EXAMPLE
- C:\PS> Get-AvailableUpdates -ComputerName $servers -ThrottleLimit 30 -PatchReport
+ C:\PS> Get-AvailableUpdates -ComputerName $servers -ThreadLimit 30 -PatchReport
  Description
  -----------
  This command will search for updates on the specified target systems using 30 paralell runspaces at max. Output will be presented in a gridview window with all collected details.
@@ -111,7 +109,7 @@ $ScriptBlock = {
    $shorterr = ""
    $errcount = 0
 
-   #Checking connection prerequisities in order (DNS -> PING -> WINRM -> WMI -> Invoke-Command) and stop processing at the first error
+   #Checking connection prerequisities in order (DNS -> PING -> WSMAN -> WMI -> Invoke-Command) and stop processing at the first error
    #DNS 
    try {
         [System.Net.DNS]::GetHostEntry($CompName) | Out-Null
